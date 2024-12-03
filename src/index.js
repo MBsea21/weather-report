@@ -1,33 +1,31 @@
 // "use strict";
-let color = "";
-let landscape = "" ;
 
 const state = {
   currentTemp : 70
 };
 
-////// temp updates
-////// figuring out how to update temperature in html/css styles needed 
+////TO ADD.......
+/////// color changing temp functionality 
+////// loading screen style setting functionality. 
+
+/// starting up page view: 
 const tempValue = document.getElementById("tempValue");
 tempValue.innerText = state.currentTemp;
-///// figuring out how to add up and down arrows next to the temperature gauge
-///////figuring out how to create behaviors and events for up down arrows 
-///declare color and lanscape functions: 
+
+
+
 const increaseTemp = () => {
   state.currentTemp += 1;
   const tempValueContainer = document.getElementById("tempValue")
   tempValueContainer.innerText = state.currentTemp;
-  // let tempColorandLandscape = findTempColorandLandscape(state.currentTemp);
-  // // let tempColor = tempColorandLandscape.color;
-  // // let tempLandscape = tempColorandLandscape.landscape;
-  
-
+  changeTempStyle(state.currentTemp)
 };
 
 const decreaseTemp = () => {
   state.currentTemp -= 1;
   const tempValueContainer = document.getElementById("tempValue")
   tempValueContainer.innerText = state.currentTemp
+  changeTempStyle(state.currentTemp)
 };
 
 const registerEventHandlers = () => {
@@ -39,34 +37,55 @@ const registerEventHandlers = () => {
 
 document.addEventListener("DOMContentLoaded",registerEventHandlers)
 
-const findTempColorandLandscape = (temp) => {
-if (temp <= 49) {
-  color = 'teal';
-  landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
-}
-if (temp >= 50 & temp <= 59) {
-  color = 'green';
-  landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
-}
-if (temp >= 60 & temp <= 69) {
-  color = 'yellow';
-  landscape = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
-}
-else if (temp >= 70 & temp <= 79) {
-  color = 'orange';
-  landscape = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
-}
-if (temp >= 80){
-  color = 'red';
-  landscape = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
+
+const changeTempStyle = (currentTemp) => {
+  let landscapeString = findCustomStyle(currentTemp,landscapeDictionary)
+  // let colorString = findCustomStyle(currentTemp,styleDictionary)
+  const weatherGardenLandscapeContainer = document.getElementById("landscape")
+  weatherGardenLandscapeContainer.innerText = landscapeString
+
+
+
+
+
+
 }
 
-console.log(color, landscape);
-return {
-  'color':color, 
-  'landscape': landscape
+
+
+const findCustomStyle = (temp,styleDictionary) => {
+if (temp <= 49) {
+  return styleDictionary[49];
+}
+if (temp >= 50 & temp <= 59) {
+  return styleDictionary[59]
+}
+if (temp >= 60 & temp <= 69) {
+  return styleDictionary[69]
+}
+else if (temp >= 70 & temp <= 79) {
+  return styleDictionary[79]
+}
+if (temp >= 80){
+  return styleDictionary[80]
 }
 };
 
 // findTempColorandLandscape(temp)
+
+const landscapeDictionary = {
+  80 : "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂",
+  79 : "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷",
+  69 : "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃",
+  59 : "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲",
+  49 : "🌲⛄️⛄️🌲⛄️⛄️🌲🍁🌲⛄️⛄️🍂🌲"
+} 
+
+const tempColorDictionary = {
+  49 :'teal',
+  59 :'green',
+  69 :'yellow',
+  79 :'orange',
+  80 : 'red'
+};
 
