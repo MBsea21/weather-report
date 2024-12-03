@@ -91,3 +91,5 @@ const tempColorDictionary = {
   80 : "red"
 };
 
+changeLandscape(state.currentTemp)
+changeTempColor(state.currentTemp);
