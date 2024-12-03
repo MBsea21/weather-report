@@ -18,14 +18,14 @@ const increaseTemp = () => {
   state.currentTemp += 1;
   const tempValueContainer = document.getElementById("tempValue")
   tempValueContainer.innerText = state.currentTemp;
-  changeTempStyle(state.currentTemp)
+  changeLandscape(state.currentTemp)
 };
 
 const decreaseTemp = () => {
   state.currentTemp -= 1;
   const tempValueContainer = document.getElementById("tempValue")
   tempValueContainer.innerText = state.currentTemp
-  changeTempStyle(state.currentTemp)
+  changeLandscape(state.currentTemp)
 };
 
 const registerEventHandlers = () => {
@@ -38,7 +38,7 @@ const registerEventHandlers = () => {
 document.addEventListener("DOMContentLoaded",registerEventHandlers)
 
 
-const changeTempStyle = (currentTemp) => {
+const changeLandscape= (currentTemp) => {
   let landscapeString = findCustomStyle(currentTemp,landscapeDictionary)
   // let colorString = findCustomStyle(currentTemp,styleDictionary)
   const weatherGardenLandscapeContainer = document.getElementById("landscape")
