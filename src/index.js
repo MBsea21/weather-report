@@ -2,7 +2,8 @@
 
 const state = {
   currentTemp : 70,
-  currentCity : "Seattle"
+  currentCity : "Seattle",
+  currentSky: "Sunny"
 };
 
 ////TO ADD.......
@@ -14,6 +15,10 @@ const tempValue = document.getElementById("tempValue");
 tempValue.innerText = state.currentTemp;
 const cityValue = document.getElementById("cityNameInput");
 cityValue.value = state.currentCity;
+const skySelectElement = document.getElementById("skySelect");
+const skyDisplayElement = document.getElementById("sky");
+
+
 
 const updateCityValue = () => {
   const input = document.getElementById("cityNameInput");
@@ -99,6 +104,26 @@ const tempColorDictionary = {
   80 : "red"
 };
 
+const skiesDictionary = {
+  Sunny: "☁️ ☁️ ☁️ ☀️ ☁️ ☁️ ☁️",
+  Cloudy: "☁️ ☁️ ☁️ 🌤 ☁️ ☁️ ☁️",
+  Rainy: "🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧",
+  Snowy: "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨"
+};
 
-changeLandscape(state.currentTemp)
+
+const changeSky = () => {
+  skySelectElement.addEventListener('change', (event) => {
+    const selectedSky = event.target.value;
+  
+    if (selectedSky in skiesDictionary) {
+        skyDisplayElement.innerText = skiesDictionary[selectedSky];
+    } else {
+        skyDisplayElement.innerText = "";
+    }
+  });
+};
+
+changeLandscape(state.currentTemp);
 changeTempColor(state.currentTemp);
+changeSky(state.currentSky);
