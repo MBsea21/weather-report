@@ -163,3 +163,11 @@ background-color: lightblue;
 .snowy {
 background-color: lightsteelblue;
 }
+
+#increaseTempButton {
+  background-color: transparent;
+}
+
+#decreaseTempButton {
+  background-color: transparent;
+}
