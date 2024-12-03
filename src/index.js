@@ -19,13 +19,15 @@ const increaseTemp = () => {
   const tempValueContainer = document.getElementById("tempValue")
   tempValueContainer.innerText = state.currentTemp;
   changeLandscape(state.currentTemp)
+  changeTempColor(state.currentTemp);
 };
 
 const decreaseTemp = () => {
   state.currentTemp -= 1;
   const tempValueContainer = document.getElementById("tempValue")
   tempValueContainer.innerText = state.currentTemp
-  changeLandscape(state.currentTemp)
+  changeLandscape(state.currentTemp);
+  changeTempColor(state.currentTemp);
 };
 
 const registerEventHandlers = () => {
@@ -43,11 +45,11 @@ const changeLandscape= (currentTemp) => {
   // let colorString = findCustomStyle(currentTemp,styleDictionary)
   const weatherGardenLandscapeContainer = document.getElementById("landscape")
   weatherGardenLandscapeContainer.innerText = landscapeString
-
-
-
-
-
+}
+const changeTempColor = (currentTemp) => {
+  let tempColor = findCustomStyle(currentTemp, tempColorDictionary);
+  const tempValue = document.getElementById('tempValue');
+  tempValue.style.color=tempColor;
 
 }
 
@@ -82,10 +84,10 @@ const landscapeDictionary = {
 } 
 
 const tempColorDictionary = {
-  49 :'teal',
-  59 :'green',
-  69 :'yellow',
-  79 :'orange',
-  80 : 'red'
+  49 :"teal",
+  59 :"green",
+  69 :"yellow",
+  79 :"orange",
+  80 : "red"
 };
 
