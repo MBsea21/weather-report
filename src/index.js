@@ -1,7 +1,8 @@
 // "use strict";
 
 const state = {
-  currentTemp : 70
+  currentTemp : 70,
+  currentCity : "Seattle"
 };
 
 ////TO ADD.......
@@ -11,8 +12,13 @@ const state = {
 /// starting up page view: 
 const tempValue = document.getElementById("tempValue");
 tempValue.innerText = state.currentTemp;
+const cityValue = document.getElementById("cityNameInput");
+cityValue.value = state.currentCity;
 
-
+const updateCityValue = () => {
+  const input = document.getElementById("cityNameInput");
+  state.currentCity = input;
+}
 
 const increaseTemp = () => {
   state.currentTemp += 1;
@@ -34,7 +40,9 @@ const registerEventHandlers = () => {
   const increaseTempButton = document.querySelector("#increaseTempButton");
   increaseTempButton.addEventListener("click",increaseTemp);
   const decreaseTempButton = document.querySelector("#decreaseTempButton");
-  decreaseTempButton.addEventListener("click", decreaseTemp)
+  decreaseTempButton.addEventListener("click", decreaseTemp);
+  const cityInputUpdate = document.querySelector("cityNameInput");
+  cityInputUpdate.addEventListener("input", updateCityValue)
 };
 
 document.addEventListener("DOMContentLoaded",registerEventHandlers)
