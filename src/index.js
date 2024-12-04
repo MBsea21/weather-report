@@ -130,19 +130,22 @@ const changeSky = () => {
   });
 };
 
-cityInputElement.addEventListener('input', (event) => {
-  cityNameElement.textContent = event.target.value || DEFAULT_CITY;
-});
-
-// Reset the city name and input field when the button is clicked
-resetButton.addEventListener('click', () => {
-  cityNameElement.textContent = DEFAULT_CITY; // Reset city name
-  cityInputElement.value = ""; // Clear the input field
-});
-
+const changeCity = () => {
+  cityInputElement.addEventListener('input', (event) => {
+    cityNameElement.textContent = event.target.value || DEFAULT_CITY;
+  });
+  
+  // Reset the city name and input field when the button is clicked
+  resetButton.addEventListener('click', () => {
+    cityNameElement.textContent = DEFAULT_CITY; // Reset city name
+    cityInputElement.value = ""; // Clear the input field
+  });
+};
 changeLandscape(state.currentTemp);
 changeTempColor(state.currentTemp);
-changeSky(state.currentSky);
+changeSky();
+changeCity();
+
 
 
 const getCityCoordandWeatherData = (currentCity) => {
