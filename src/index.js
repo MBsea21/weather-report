@@ -118,6 +118,7 @@ const changeSky = () => {
   
     if (selectedSky in skiesDictionary) {
         skyDisplayElement.innerText = skiesDictionary[selectedSky];
+
     } else {
         skyDisplayElement.innerText = "";
     }
