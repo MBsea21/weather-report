@@ -111,7 +111,7 @@ const tempColorDictionary = {
 
 const skiesDictionary = {
   Sunny: "☁️ 🕊   ☀️ ☁️  🦅 ☁️",
-  haze: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫",
+  Haze: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫",
   Cloudy: "☁️ ☁️ ☁️ 🌤 ☁️ ☁️ ☁️",
   Rainy: "🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧",
   Snowy: "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨"
@@ -132,7 +132,7 @@ const openWeatherConditions= {
   Squall: "🌨⛈🌧🌨⛈🌧🌨⛈🌧", 
   Tornado: "🌪⛈⛈🌪⛈⛈🌪⛈⛈", 
   Clear: "         ☀️   🕊       ", 
-  Clouds: "☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️"
+  Cloudy: "☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️"
 };
 
 
