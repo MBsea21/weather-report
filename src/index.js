@@ -117,22 +117,22 @@ const skiesDictionary = {
   Snowy: "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨"
 };
 
-openWeatherConditions= {
-  thunderStorm: "",
-  Rain: "",
-  Drizzle: "",
-  Snow: "",
-  Mist: "",
-  Smoke: "",
-  Haze: "",
-  Dust: "", 
-  Fog: "", 
-  Sand: "",
-  Ash: "", 
-  Squall: "", 
-  Tornado: "", 
-  Clear: "", 
-  Clouds: ""
+const openWeatherConditions= {
+  ThunderStorm: "⛈⛈⛈⛈⛈⛈⛈⛈⛈⛈⛈",
+  Rain: "🌧🌈⛈🌧🌧💧💧🌧🌦🌧💧🌧🌧",
+  Drizzle: "🌧🌈🌧🌧🌧🌦🌧🌧🌈🌧☁️☁️",
+  Snow: "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨",
+  Mist: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫",
+  Smoke: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫",
+  Haze: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫",
+  Dust: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫", 
+  Fog: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫", 
+  Sand: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫",
+  Ash: "🌫🌫🌫🌫🌫🌫🌫🌫🌫🌫", 
+  Squall: "🌨⛈🌧🌨⛈🌧🌨⛈🌧", 
+  Tornado: "🌪⛈⛈🌪⛈⛈🌪⛈⛈", 
+  Clear: "         ☀️   🕊       ", 
+  Clouds: "☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️"
 };
 
 
@@ -140,8 +140,8 @@ const changeSky = () => {
   skySelectElement.addEventListener('change', (event) => {
     const selectedSky = event.target.value;
   
-    if (selectedSky in skiesDictionary) {
-        skyDisplayElement.innerText = skiesDictionary[selectedSky];
+    if (selectedSky in openWeatherConditions) {
+        skyDisplayElement.innerText = openWeatherConditions[selectedSky];
 
     } else {
         skyDisplayElement.innerText = "";
