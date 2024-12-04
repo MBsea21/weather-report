@@ -5,6 +5,7 @@ const state = {
   currentCity : "Seattle",
   currentSky: "Sunny"
 };
+const DEFAULT_CITY = "Default City";
 
 ////TO ADD.......
 /////// color changing temp functionality 
@@ -17,6 +18,10 @@ const cityValue = document.getElementById("cityNameInput");
 cityValue.value = state.currentCity;
 const skySelectElement = document.getElementById("skySelect");
 const skyDisplayElement = document.getElementById("sky");
+const cityNameElement = document.getElementById('city-name');
+const cityInputElement = document.getElementById('cityNameInput');
+const resetButton = document.getElementById('cityNameReset');
+
 
 
 
@@ -123,6 +128,16 @@ const changeSky = () => {
     }
   });
 };
+
+cityInputElement.addEventListener('input', (event) => {
+  cityNameElement.textContent = event.target.value || DEFAULT_CITY;
+});
+
+// Reset the city name and input field when the button is clicked
+resetButton.addEventListener('click', () => {
+  cityNameElement.textContent = DEFAULT_CITY; // Reset city name
+  cityInputElement.value = ""; // Clear the input field
+});
 
 changeLandscape(state.currentTemp);
 changeTempColor(state.currentTemp);
