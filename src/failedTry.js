@@ -1,5 +1,5 @@
 const state = {
-  currentTemp : 70.0,
+  currentTemp : 70,
   currentCity : "Seattle",
   currentSky: "Clear",
   currentTempType: "F"
@@ -11,28 +11,27 @@ const updateCityValue = () => {
   state.currentCity = input;
 };
 
-const increaseTemp = () => {
-  state.currentTemp += 1;
+const increaseCurrentTemp = () => {
+  newTemp = state.currentTemp + 1
+  state.currentTemp = newTemp;
   const tempValueContainer = document.getElementById("tempValue");
   tempValueContainer.innerText = state.currentTemp;
-  changeLandscape(state.currentTemp);
-  changeTempColor(state.currentTemp);
+  updateCustomElements()
 };
 
-const decreaseTemp = () => {
+const decreaseCurrentTemp = () => {
   state.currentTemp -= 1;
   const tempValueContainer = document.getElementById("tempValue");
   tempValueContainer.innerText = state.currentTemp;
-  changeLandscape(state.currentTemp);
-  changeTempColor(state.currentTemp);
+  updateCustomElements()
 };
 
 const registerEventHandlers = () => {
   //temp button event handlers
   const increaseTempButton = document.querySelector("#increaseTempButton");
-  increaseTempButton.addEventListener("click",increaseTemp);
+  increaseTempButton.addEventListener("click",increaseCurrentTemp);
   const decreaseTempButton = document.querySelector("#decreaseTempButton");
-  decreaseTempButton.addEventListener("click", decreaseTemp);
+  decreaseTempButton.addEventListener("click", decreaseCurrentTemp);
   const conversionButton = document.querySelector("#conversionButton");
   conversionButton.addEventListener("click",convertTempButtonClicked);
   const getRealtimeTempButton = document.querySelector("#currentTempButton");
@@ -190,7 +189,7 @@ const getWeatherData = (coordinates) => {
     let tempF = (convertTemp(tempK, "K", "F")).toFixed(0);
     state.currentCity = cityName
     state.currentSky = currentWeather
-    state.currentTemp = tempF
+    state.currentTemp = Number(tempF)
     updateCustomElements()
   })
   .catch((error) => {
