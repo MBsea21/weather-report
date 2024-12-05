@@ -1,16 +1,3 @@
-const onLoad = () => {
-  const tempValue = document.getElementById("tempValue");
-  tempValue.innerText = state.currentTemp;
-  const cityValue = document.getElementById("cityNameInput");
-  cityValue.value = state.currentCity;
-  const skyDisplayElement = document.getElementById("sky");
-  const cityNameElement = document.getElementById('cityName');
-  const resetButton = document.getElementById('cityNameReset');
-  document.addEventListener("DOMContentLoaded",registerEventHandlers);
-  getCityCoordandWeatherData(state.currentCity);
-}
-
-
 const state = {
   currentTemp : 70.0,
   currentCity : "Seattle",
@@ -48,6 +35,8 @@ const registerEventHandlers = () => {
   decreaseTempButton.addEventListener("click", decreaseTemp);
   const conversionButton = document.querySelector("#conversionButton");
   conversionButton.addEventListener("click",convertTempButtonClicked);
+  const getRealtimeTempButton = document.querySelector("#currentTempButton");
+  getRealtimeTempButton.addEventListener("click",currentTempButtonClicked);
   
   /// city button event handlers
   const cityUpdateButton = document.querySelector("#cityUpdate");
@@ -168,7 +157,9 @@ const openWeatherConditions= {
 };
 
 
-
+const currentTempButtonClicked = () => {
+  getCityCoordandWeatherData(state.currentCity)
+};
 
 
 const getCityCoordandWeatherData = (currentCity) => {
@@ -191,7 +182,6 @@ const getWeatherData = (coordinates) => {
   axios
   .get(`http://127.0.0.1:5000/weather?lat=${coordinates.lat}&lon=${coordinates.lon}`)
   .then( (response) => {
-    const cityWeatherData = {}
     let cityName = response.data['name']
     let weatherData = response.data['weather'];
     let currentWeather = weatherData[0].main;
@@ -248,6 +238,7 @@ const convertTempButtonClicked = () => {
 const updateCustomElements = () => {
   /// update header bar
   const headerCityNameContainer = document.getElementById('headerCityName')
+  console.log(state.currentCity)
   headerCityNameContainer.innerText = state.currentCity
 
   /// update temp bar
@@ -285,4 +276,19 @@ const updateConvertTempButton = () => {
   converTempButton.innerText = buttonText;
 };
 
+const setOriginalValues = () => {
+  const tempValue = document.getElementById("tempValue");
+  tempValue.innerText = state.currentTemp;
+  const cityValue = document.getElementById("cityNameInput");
+  cityValue.value = state.currentCity;
+  getCityCoordandWeatherData(state.currentCity);}
+
+setOriginalValues()
+
+
+const onLoad = () => {
+  document.addEventListener("DOMContentLoaded",registerEventHandlers);
+}
+
 onLoad()
+
