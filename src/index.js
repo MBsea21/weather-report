@@ -12,7 +12,8 @@ const updateCityValue = () => {
 };
 
 const increaseCurrentTemp = () => {
-  newTemp = state.currentTemp + 1
+  let previousTemp = Number(state.currentTemp);
+  let newTemp = previousTemp + 1;
   state.currentTemp = newTemp;
   const tempValueContainer = document.getElementById("tempValue");
   tempValueContainer.innerText = state.currentTemp;
@@ -20,7 +21,9 @@ const increaseCurrentTemp = () => {
 };
 
 const decreaseCurrentTemp = () => {
-  state.currentTemp -= 1;
+  let previousTemp = Number(state.currentTemp);
+  let newTemp = previousTemp - 1;
+  state.currentTemp = newTemp;
   const tempValueContainer = document.getElementById("tempValue");
   tempValueContainer.innerText = state.currentTemp;
   updateCustomElements()
@@ -190,6 +193,7 @@ const getWeatherData = (coordinates) => {
     state.currentCity = cityName
     state.currentSky = currentWeather
     state.currentTemp = Number(tempF)
+    state.currentTempType = "F"
     updateCustomElements()
   })
   .catch((error) => {
