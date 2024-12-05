@@ -171,3 +171,10 @@ background-color: lightsteelblue;
 #decreaseTempButton {
   background-color: transparent;
 }
+
+#conversionButton {
+  display: flex;
+  justify-content: center;
+  padding :10px;
+  background-color: gray;
+}

@@ -18,7 +18,7 @@
             <span id="headerCityName" class="header__city-name"></span></span>
     </header>
     <section class="temperature__section">
-        <h2>Temperature</h2>
+        <h2>Temperature (<span id="tempType"></span>)</h2>
         <div class="temperature__content">
             <div class="temperature__controls">
                 <span id="increaseTempControl"><button id="increaseTempButton">⬆️</button></span>
@@ -27,12 +27,13 @@
             </div>
             <button id="currentTempButton">Get Realtime Temperature</button>
         </div>
+        <button id="conversionButton"></button>
     </section>
     <section class="sky__section">
         <h2>Sky</h2>
         <select id="skySelect">
             <option value="Clear">Sunny</option>
-            <option value="Cloudy">Cloudy</option>
+            <option value="Clouds">Cloudy</option>
             <option value="Rain">Rainy</option>
             <option value="Snow">Snowy</option>
             <option value="Tornado">Tornado</option>
