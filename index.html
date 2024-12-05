@@ -18,7 +18,7 @@
             <span id="headerCityName" class="header__city-name"></span></span>
     </header>
     <section class="temperature__section">
-        <h2>Temperature</h2>
+        <h2>Temperature (<span id="tempType"></span>)</h2>
         <div class="temperature__content">
             <div class="temperature__controls">
                 <span id="increaseTempControl"><button id="increaseTempButton">⬆️</button></span>
@@ -27,17 +27,18 @@
             </div>
             <button id="currentTempButton">Get Realtime Temperature</button>
         </div>
+        <button id="conversionButton"></button>
     </section>
     <section class="sky__section">
         <h2>Sky</h2>
         <select id="skySelect">
             <option value="Clear">Sunny</option>
-            <option value="Cloudy">Cloudy</option>
+            <option value="Clouds">Cloudy</option>
             <option value="Rain">Rainy</option>
             <option value="Snow">Snowy</option>
             <option value="Tornado">Tornado</option>
             <option value="Drizzle">Drizzly</option>
-            <option value="Mist">Misty</option>
+            <option value="Mist">Misty</option>git p
             <option value="Smoke">Smokey</option>
             <option value="Haze">Hazey</option>
             <option value="Dust">Dusty</option>
@@ -52,17 +53,19 @@
     <section class="city-name__section">
         <h2 id="cityName">City Name</h2>
         <input type="text" id="cityNameInput" placeholder="Enter city name">
-        <button id="cityNameReset" class="city-name__reset-btn">Reset</button>
+        <button id="cityUpdate" class="cityButtons">Update</button>
+        <button id="cityNameReset" class="cityButtons">Reset</button>
+
     </section>
 
     <section class="garden__section">
         <h2>Weather Garden</h2>
         <div id="gardenContent" class="garden__content">
-            <div id="sky">"Sunny"</div>
+            <div id="sky"></div>
             <div id="landscape"></div>
         </div>
     </section>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./src/indexCopy.js"></script>
+    <script src="./src/index.js"></script>
 </body>
 </html>
