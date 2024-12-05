@@ -1,3 +1,5 @@
+//////////////////////////////////////////////////////////
+//// Custom Decoration & State Dictionaries 
 const state = {
   currentTemp : 70,
   currentCity : "Seattle",
@@ -5,123 +7,6 @@ const state = {
   currentTempType: "F"
 };
 const DEFAULT_CITY = "Seattle";
-
-const updateCityValue = () => {
-  const input = document.getElementById("cityNameInput");
-  state.currentCity = input;
-};
-
-const increaseCurrentTemp = () => {
-  let previousTemp = Number(state.currentTemp);
-  let newTemp = previousTemp + 1;
-  state.currentTemp = newTemp;
-  const tempValueContainer = document.getElementById("tempValue");
-  tempValueContainer.innerText = state.currentTemp;
-  updateCustomElements()
-};
-
-const decreaseCurrentTemp = () => {
-  let previousTemp = Number(state.currentTemp);
-  let newTemp = previousTemp - 1;
-  state.currentTemp = newTemp;
-  const tempValueContainer = document.getElementById("tempValue");
-  tempValueContainer.innerText = state.currentTemp;
-  updateCustomElements()
-};
-
-const registerEventHandlers = () => {
-  //temp button event handlers
-  const increaseTempButton = document.querySelector("#increaseTempButton");
-  increaseTempButton.addEventListener("click",increaseCurrentTemp);
-  const decreaseTempButton = document.querySelector("#decreaseTempButton");
-  decreaseTempButton.addEventListener("click", decreaseCurrentTemp);
-  const conversionButton = document.querySelector("#conversionButton");
-  conversionButton.addEventListener("click",convertTempButtonClicked);
-  const getRealtimeTempButton = document.querySelector("#currentTempButton");
-  getRealtimeTempButton.addEventListener("click",currentTempButtonClicked);
-  
-  /// city button event handlers
-  const cityUpdateButton = document.querySelector("#cityUpdate");
-  cityUpdateButton.addEventListener('click', changeCity);
-  const resetButton = document.querySelector("#cityNameReset");
-  resetButton.addEventListener('click', resetCity); 
-
-  /// change sky
-  const skyChoiceBox = document.querySelector("#skySelect");
-  skyChoiceBox.addEventListener('change', changeSkyValue);
-};
-
-
-
-const changeLandscape= (currentTemp) => {
-  let landscapeString = findCustomStyle(currentTemp,landscapeDictionary);
-  const weatherGardenLandscapeContainer = document.getElementById("landscape");
-  weatherGardenLandscapeContainer.innerText = landscapeString;
-};
-const changeTempColor = (currentTemp) => {
-  let tempColor = findCustomStyle(currentTemp, tempColorDictionary);
-  const tempValue = document.getElementById('tempValue');
-  tempValue.style.color=tempColor;
-};
-
-const changeSkyinWeatherBox = (currentSky) => {
-  const skyDisplayElement = document.getElementById('sky');
-  if (currentSky in openWeatherConditions) {
-    skyDisplayElement.innerText = openWeatherConditions[currentSky];
-  }
-  else {
-    skyDisplayElement.innerText = "";
-  }
-  const skyValueContainer = document.getElementById('skySelect');
-  skyValueContainer.value = currentSky;
-};
-
-const changeSkyValue = () => {
-  const selectedSkyBox = document.getElementById('skySelect');
-  const selectedSkyValue = selectedSkyBox.value;
-  state.currentSky = selectedSkyValue;
-  changeSkyinWeatherBox(state.currentSky);
-};
-
-const changeCity = () => {
-  const newCity = document.getElementById('cityNameInput');
-  state.currentCity = newCity.value;
-  getCityCoordandWeatherData(state.currentCity);
-};
-
-const resetCity = () => {
-  const cityNameInput = document.getElementById('cityNameInput');
-  const cityNameHeader = document.getElementById('cityName');
-  state.currentCity = DEFAULT_CITY;
-  cityNameInput.innerText = state.currentCity;
-  cityNameHeader.innerText = state.currentCity;
-};
-
-
-
-
-const findCustomStyle = (temp,styleDictionary) => {
-  if (state.currentTempType === "C") {
-    temp = convertTemp(state.currentTemp,"C","F")
-  }
-  if (temp <= 49.0) {
-    return styleDictionary[49];
-  }
-  if (temp >= 50.0 & temp <= 59) {
-    return styleDictionary[59];
-  }
-  if (temp >= 60.0 & temp <= 69) {
-    return styleDictionary[69];
-  }
-  else if (temp >= 70.0 & temp <= 79) {
-    return styleDictionary[79];
-  }
-  if (temp >= 80.0){
-    return styleDictionary[80];
-  }
-};
-
-// DECLARE DICTIONARIES
 
 const landscapeDictionary = {
   80 : "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂",
@@ -159,10 +44,57 @@ const openWeatherConditions= {
 };
 
 
+
+
+
+
+
+
+
+//////////////////////////////////////////////
+///// event handler functions
+const increaseCurrentTemp = () => {
+  let previousTemp = Number(state.currentTemp);
+  let newTemp = previousTemp + 1;
+  state.currentTemp = newTemp;
+  const tempValueContainer = document.getElementById("tempValue");
+  tempValueContainer.innerText = state.currentTemp;
+  updateCustomElements()
+};
+
+const decreaseCurrentTemp = () => {
+  let previousTemp = Number(state.currentTemp);
+  let newTemp = previousTemp - 1;
+  state.currentTemp = newTemp;
+  const tempValueContainer = document.getElementById("tempValue");
+  tempValueContainer.innerText = state.currentTemp;
+  updateCustomElements()
+};
+
+const changeSkyValue = () => {
+  const selectedSkyBox = document.getElementById('skySelect');
+  const selectedSkyValue = selectedSkyBox.value;
+  state.currentSky = selectedSkyValue;
+  changeSkyinWeatherBox(state.currentSky);
+};
+
+const changeCity = () => {
+  const newCity = document.getElementById('cityNameInput');
+  state.currentCity = newCity.value;
+  getCityCoordandWeatherData(state.currentCity);
+};
+
+const resetCity = () => {
+  const cityNameInput = document.getElementById('cityNameInput');
+  const cityNameHeader = document.getElementById('cityName');
+  state.currentCity = DEFAULT_CITY;
+  cityNameInput.innerText = state.currentCity;
+  cityNameHeader.innerText = state.currentCity;
+};
+
 const currentTempButtonClicked = () => {
   getCityCoordandWeatherData(state.currentCity)
 };
-
 
 const getCityCoordandWeatherData = (currentCity) => {
   axios
@@ -178,7 +110,6 @@ const getCityCoordandWeatherData = (currentCity) => {
     console.log(error,'could not find location data');
   });
 };
-
 
 const getWeatherData = (coordinates) => {
   axios
@@ -202,6 +133,80 @@ const getWeatherData = (coordinates) => {
 
   }
 
+const convertTempButtonClicked = () => {
+  if (state.currentTempType === "F") {
+    newTemp = convertTemp(state.currentTemp,"F","C").toFixed(0);
+    state.currentTemp = newTemp
+    state.currentTempType = "C"
+  } else if (state.currentTempType === "C") {
+    const newTemp = convertTemp(state.currentTemp,"C","F").toFixed(0);
+    state.currentTemp = newTemp
+    state.currentTempType = "F"
+  }
+  updateCustomElements();
+};
+
+
+///////////////////////////////////////////////
+///// functions that find/alter state values. 
+const updateConvertTempButton = () => {
+  let buttonText = ""
+  if (state.currentTempType === "F") {
+    buttonText = "Convert to Celsius";
+  }
+  else if (state.currentTempType === "C") {
+    buttonText = "Convert to Fahrenheit";
+  };
+  const converTempButton = document.getElementById('conversionButton');
+  converTempButton.innerText = buttonText;
+};
+
+const findCustomStyle = (temp,styleDictionary) => {
+  if (state.currentTempType === "C") {
+    temp = convertTemp(state.currentTemp,"C","F")
+  }
+  if (temp <= 49.0) {
+    return styleDictionary[49];
+  }
+  if (temp >= 50.0 & temp <= 59) {
+    return styleDictionary[59];
+  }
+  if (temp >= 60.0 & temp <= 69) {
+    return styleDictionary[69];
+  }
+  else if (temp >= 70.0 & temp <= 79) {
+    return styleDictionary[79];
+  }
+  if (temp >= 80.0){
+    return styleDictionary[80];
+  }
+};
+
+const changeLandscape= (currentTemp) => {
+  let landscapeString = findCustomStyle(currentTemp,landscapeDictionary);
+  const weatherGardenLandscapeContainer = document.getElementById("landscape");
+  weatherGardenLandscapeContainer.innerText = landscapeString;
+};
+const changeTempColor = (currentTemp) => {
+  let tempColor = findCustomStyle(currentTemp, tempColorDictionary);
+  const tempValue = document.getElementById('tempValue');
+  tempValue.style.color=tempColor;
+};
+
+const changeSkyinWeatherBox = (currentSky) => {
+  const skyDisplayElement = document.getElementById('sky');
+  if (currentSky in openWeatherConditions) {
+    skyDisplayElement.innerText = openWeatherConditions[currentSky];
+  }
+  else {
+    skyDisplayElement.innerText = "";
+  }
+  const skyValueContainer = document.getElementById('skySelect');
+  skyValueContainer.value = currentSky;
+};
+
+////////////////////////////////////
+////// helper functions 
 const convertTemp = (temp, inputType, outputType) => {
   //celcius to farenheit
   if (outputType === "F" & inputType === "C") {
@@ -224,19 +229,32 @@ const convertTemp = (temp, inputType, outputType) => {
   };
 };
 
-const convertTempButtonClicked = () => {
-  if (state.currentTempType === "F") {
-    newTemp = convertTemp(state.currentTemp,"F","C").toFixed(0);
-    state.currentTemp = newTemp
-    state.currentTempType = "C"
-  } else if (state.currentTempType === "C") {
-    const newTemp = convertTemp(state.currentTemp,"C","F").toFixed(0);
-    state.currentTemp = newTemp
-    state.currentTempType = "F"
-  }
-  updateCustomElements();
-};
 
+
+/////////////////////////////////////////////
+//// functions that help set up page on load
+
+const registerEventHandlers = () => {
+  //temp button event handlers
+  const increaseTempButton = document.querySelector("#increaseTempButton");
+  increaseTempButton.addEventListener("click",increaseCurrentTemp);
+  const decreaseTempButton = document.querySelector("#decreaseTempButton");
+  decreaseTempButton.addEventListener("click", decreaseCurrentTemp);
+  const conversionButton = document.querySelector("#conversionButton");
+  conversionButton.addEventListener("click",convertTempButtonClicked);
+  const getRealtimeTempButton = document.querySelector("#currentTempButton");
+  getRealtimeTempButton.addEventListener("click",currentTempButtonClicked);
+  
+  /// city button event handlers
+  const cityUpdateButton = document.querySelector("#cityUpdate");
+  cityUpdateButton.addEventListener('click', changeCity);
+  const resetButton = document.querySelector("#cityNameReset");
+  resetButton.addEventListener('click', resetCity); 
+
+  /// change sky
+  const skyChoiceBox = document.querySelector("#skySelect");
+  skyChoiceBox.addEventListener('change', changeSkyValue);
+};
 
 const updateCustomElements = () => {
   /// update header bar
@@ -266,18 +284,6 @@ const updateCustomElements = () => {
   changeSkyValue(state.currentSky);
 }
 
-const updateConvertTempButton = () => {
-  let buttonText = ""
-  if (state.currentTempType === "F") {
-    buttonText = "Convert to Celsius";
-  }
-  else if (state.currentTempType === "C") {
-    buttonText = "Convert to Fahrenheit";
-  };
-  const converTempButton = document.getElementById('conversionButton');
-  converTempButton.innerText = buttonText;
-};
-
 const setOriginalValues = () => {
   const tempValue = document.getElementById("tempValue");
   tempValue.innerText = state.currentTemp;
@@ -286,6 +292,7 @@ const setOriginalValues = () => {
   getCityCoordandWeatherData(state.currentCity);}
 
 setOriginalValues()
+
 
 
 const onLoad = () => {
