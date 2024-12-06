@@ -96,10 +96,8 @@ const changeCity = () => {
 
 const resetCity = () => {
   const cityNameInput = document.getElementById('cityNameInput');
-  const cityNameHeader = document.getElementById('cityName');
   state.currentCity = DEFAULT_CITY;
   cityNameInput.innerText = state.currentCity;
-  cityNameHeader.innerText = state.currentCity;
 };
 
 const currentTempButtonClicked = () => {
@@ -296,9 +294,7 @@ const updateCustomElements = () => {
   skyInputElement.value = state.currentSky
 
   //// update cityName box 
-  const cityBoxTitle = document.getElementById('cityName');
   const cityInputElement = document.getElementById('cityNameInput');
-  cityBoxTitle.innerText = state.currentCity;
   cityInputElement.value = state.currentCity ;
 
   /// update weather garden
