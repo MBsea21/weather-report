@@ -9,6 +9,7 @@ const state = {
   currentCoordinates: {lat:"47.6038321", lon:"-122.330062"}
 };
 const DEFAULT_CITY = "Seattle";
+const DEFAULT_COORDS = {lat:"47.6038321", lon:"-122.330062"}
 
 const landscapeDictionary = {
   80 : "🌵__🐍_🦂_🌵👹🌵__🐍_🏜_🦂",
@@ -97,7 +98,10 @@ const changeCity = () => {
 const resetCity = () => {
   const cityNameInput = document.getElementById('cityNameInput');
   state.currentCity = DEFAULT_CITY;
+  state.currentCoordinates = DEFAULT_COORDS;
   cityNameInput.innerText = state.currentCity;
+  getWeatherData(state.currentCoordinates)
+  updateCustomElements()
 };
 
 const currentTempButtonClicked = () => {
