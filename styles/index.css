@@ -83,13 +83,13 @@ justify-content: space-around;
 /* justify-content: center; */
 }
 
-#tempValue {
-font-size: 3rem;
-margin-left: 1.5rem;
-/* padding-right: 1rem; */
+
+#tempValueBox {
+  font-size: 3rem;
+  margin-left: 1.5rem;
+  /* padding-right: 1rem; */
 /* margin-right: 1.5rem; */
 }
-
 .temperature__controls {
 display: flex;
 flex-direction: column;
@@ -176,4 +176,10 @@ background-color: lightsteelblue;
   justify-content: center;
   padding :10px;
   background-color: gray;
+}
+
+#tempButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

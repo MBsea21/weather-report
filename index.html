@@ -18,16 +18,19 @@
             <span id="headerCityName" class="header__city-name"></span></span>
     </header>
     <section class="temperature__section">
-        <h2>Temperature (<span id="tempType"></span>)</h2>
+        <h2>Temperature (<span class="tempType"></span>)</h2>
         <div class="temperature__content">
             <div class="temperature__controls">
                 <span id="increaseTempControl"><button id="increaseTempButton">⬆️</button></span>
-                <span id="tempValue"></span>
+                <span id =tempValueBox><span id="tempValue"></span>°<span class="tempType"></span></span>
                 <span id="decreaseTempControl"><button id="decreaseTempButton">⬇️</button></span>
             </div>
-            <button id="currentTempButton">Get Realtime Temperature</button>
+            <div id = tempButtons>
+                <button id="currentTempButton">Get current <span id=cityName></span> Weather</button>
+                <button id="conversionButton"></button>
+            </div>
         </div>
-        <button id="conversionButton"></button>
+
     </section>
     <section class="sky__section">
         <h2>Sky</h2>
@@ -65,6 +68,7 @@
             <div id="landscape"></div>
         </div>
     </section>
+    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./src/index.js"></script>
 </body>

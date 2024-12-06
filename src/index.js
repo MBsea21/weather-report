@@ -195,8 +195,8 @@ const changeLandscape= (currentTemp) => {
 };
 const changeTempColor = (currentTemp) => {
   let tempColor = findCustomStyle(currentTemp, tempTextColorDictionary);
-  const tempValue = document.getElementById('tempValue');
-  tempValue.style.color=tempColor;
+  const tempValueSurrounds = document.getElementById('tempValueBox')
+  tempValueSurrounds.style.color = tempColor;
 };
 
 const changeSkyinWeatherBox = (currentSky) => {
@@ -285,9 +285,14 @@ const updateCustomElements = () => {
   const tempValueElement = document.getElementById('tempValue');
   tempValueElement.innerText = state.currentTemp
   changeTempColor(state.currentTemp)
-  const tempTypeElement = document.getElementById('tempType')
-  tempTypeElement.innerText = state.currentTempType
+  const tempClassElements = document.getElementsByClassName('tempType')
+  for (var i = 0; i < tempClassElements.length; i++){
+    tempClassElements[i].innerText = state.currentTempType;
+  }
+  tempClassElements.innerText = state.currentTempType
   updateConvertTempButton()
+  const realtimeCityButtonElement = document.getElementById('cityName')
+  realtimeCityButtonElement.innerText = state.currentCity
 
   /// update sky box
   const skyInputElement = document.getElementById('skySelect')
@@ -308,6 +313,8 @@ const setOriginalValues = () => {
   const cityValue = document.getElementById("cityNameInput");
   cityValue.value = state.currentCity;
   getCityCoordandWeatherData(state.currentCity);}
+  const realtimeCityElement = document.getElementById('cityName')
+  realtimeCityElement.innerText = state.currentCity
 
 setOriginalValues()
 
