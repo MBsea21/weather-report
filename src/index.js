@@ -5,7 +5,8 @@ const state = {
   currentCity : "Seattle",
   currentSky: "Clear",
   currentTempType: "F",
-  currentGardenBackgroundColor: "lightblue"
+  currentGardenBackgroundColor: "lightblue",
+  currentCoordinates: {lat:"47.6038321", lon:"-122.330062"},
 };
 const DEFAULT_CITY = "Seattle";
 
@@ -101,7 +102,7 @@ const resetCity = () => {
 };
 
 const currentTempButtonClicked = () => {
-  getCityCoordandWeatherData(state.currentCity)
+  getWeatherData(state.currentCoordinates)
 };
 
 const getCityCoordandWeatherData = (currentCity) => {
@@ -112,7 +113,9 @@ const getCityCoordandWeatherData = (currentCity) => {
       lat: response.data[0].lat,
       lon: response.data[0].lon,
     };
-    return getWeatherData(coordinates);
+    state.currentCoordinates = coordinates;
+
+    return getWeatherData(state.currentCoordinates);
   })
   .catch((error) => {
     console.log(error,'could not find location data');
