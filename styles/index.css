@@ -105,7 +105,6 @@ min-height: 200px;
 max-width: fit-content;
 margin: auto;
 padding: 2rem;
-background-color: gray;
 
 display: flex;
 flex-direction: column;
@@ -157,7 +156,7 @@ background-color: rgb(221, 255, 255);
 }
 
 .rainy {
-background-color: lightblue;
+background-color: #add8e6;
 }
 
 .snowy {
