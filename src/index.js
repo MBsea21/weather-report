@@ -91,8 +91,14 @@ const changeSkyValue = () => {
 
 const changeCity = () => {
   const newCity = document.getElementById('cityNameInput');
-  state.currentCity = newCity.value;
-  getCityCoordandWeatherData(state.currentCity);
+  console.log(newCity.value)
+  console.log(state.currentCity)
+  if (newCity.value === state.currentCity)
+    getWeatherData(state.currentCoordinates);
+  else {
+    state.currentCity = newCity.value;
+    getCityCoordandWeatherData(state.currentCity);
+  }
 };
 
 const resetCity = () => {
@@ -145,12 +151,12 @@ const getWeatherData = (coordinates) => {
 const convertTempButtonClicked = () => {
   if (state.currentTempType === "F") {
     newTemp = convertTemp(state.currentTemp,"F","C").toFixed(0);
-    state.currentTemp = newTemp
-    state.currentTempType = "C"
+    state.currentTemp = newTemp;
+    state.currentTempType = "C";
   } else if (state.currentTempType === "C") {
     const newTemp = convertTemp(state.currentTemp,"C","F").toFixed(0);
-    state.currentTemp = newTemp
-    state.currentTempType = "F"
+    state.currentTemp = newTemp;
+    state.currentTempType = "F";
   }
   updateCustomElements();
 };
