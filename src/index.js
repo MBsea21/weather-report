@@ -24,8 +24,8 @@ const tempTextColorDictionary = {
   32 :"teal",
   49 :"blue",
   59 :"green",
-  69 :"yellow",
-  79 :"orange",
+  69 :"goldenrod",
+  79 :"brown",
   80 : "red"
 };
 
