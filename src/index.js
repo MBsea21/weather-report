@@ -11,23 +11,17 @@ const state = {
 const DEFAULT_CITY = "Seattle";
 
 const landscapeDictionary = {
-  80 : "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂",
-  79 : "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷",
-  69 : "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃",
-  59 : "🌲🌲🌲🌲🍂🌲🍁🌲🌲🌲🌲🍂🌲",
-  49 : "🌲⛄️⛄️🌲⛄️⛄️🌲🍁🌲⛄️⛄️🍂🌲"
+  80 : "🌵__🐍_🦂_🌵👹🌵__🐍_🏜_🦂",
+  79 : "🌸🌿🌼__🌷😎🌿_🌼🌱_🌻🌷🌸",
+  69 : "🌾🌾_🍃🌾_🪨__🛤_🌾🌾🌾_🍃",
+  59 : "🌲🌲🌲🌲🌲🌲😨🌲🌲🌲🌲🌲🌲",
+  49 : "🌲🌲🌲🌲🌲🌲🥶🌲🌲🌲🌲🌲🌲",
+  32 : "🧊⛄️⛄️🧊⛄️⛄️🥶⛄️⛄️🧊⛄️⛄️🧊"
 };
 
 const tempTextColorDictionary = {
-  49 :"teal",
-  59 :"green",
-  69 :"yellow",
-  79 :"orange",
-  80 : "red"
-};
-
-const tempBackgroundColorDictionary = {
-  49 :"teal",
+  32 :"teal",
+  49 :"blue",
   59 :"green",
   69 :"yellow",
   79 :"orange",
@@ -107,7 +101,7 @@ const resetCity = () => {
 };
 
 const currentTempButtonClicked = () => {
-  getWeatherData(state.currentCoordinates)
+  getWeatherData(state.currentCoordinates);
 };
 
 const getCityCoordandWeatherData = (currentCity) => {
@@ -131,10 +125,10 @@ const getWeatherData = (coordinates) => {
   axios
   .get(`http://127.0.0.1:5000/weather?lat=${coordinates.lat}&lon=${coordinates.lon}`)
   .then( (response) => {
-    let cityName = response.data['name']
+    let cityName = response.data['name'];
     let weatherData = response.data['weather'];
     let currentWeather = weatherData[0].main;
-    let tempData = response.data['main']
+    let tempData = response.data['main'];
     let tempK = tempData.temp;
     let temp = (convertTemp(tempK, "K", state.currentTempType)).toFixed(0);
     state.currentCity = cityName;
@@ -179,7 +173,10 @@ const findCustomStyle = (temp,styleDictionary) => {
   if (state.currentTempType === "C") {
     temp = convertTemp(state.currentTemp,"C","F");
   }
-  if (temp <= 49.0) {
+  if (temp <= 32.0 ){
+    return styleDictionary[32];
+  }
+  if (temp >= 31.0 & temp <= 49.0) {
     return styleDictionary[49];
   }
   if (temp >= 50.0 & temp <= 59) {
