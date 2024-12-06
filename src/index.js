@@ -6,7 +6,7 @@ const state = {
   currentSky: "Clear",
   currentTempType: "F",
   currentGardenBackgroundColor: "lightblue",
-  currentCoordinates: {lat:"47.6038321", lon:"-122.330062"},
+  currentCoordinates: {lat:"47.6038321", lon:"-122.330062"}
 };
 const DEFAULT_CITY = "Seattle";
 
@@ -16,7 +16,7 @@ const landscapeDictionary = {
   69 : "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃",
   59 : "🌲🌲🌲🌲🍂🌲🍁🌲🌲🌲🌲🍂🌲",
   49 : "🌲⛄️⛄️🌲⛄️⛄️🌲🍁🌲⛄️⛄️🍂🌲"
-} 
+};
 
 const tempTextColorDictionary = {
   49 :"teal",
@@ -79,7 +79,7 @@ const decreaseCurrentTemp = () => {
   state.currentTemp = newTemp;
   const tempValueContainer = document.getElementById("tempValue");
   tempValueContainer.innerText = state.currentTemp;
-  updateCustomElements()
+  updateCustomElements();
 };
 
 const changeSkyValue = () => {
@@ -91,10 +91,9 @@ const changeSkyValue = () => {
 
 const changeCity = () => {
   const newCity = document.getElementById('cityNameInput');
-  console.log(newCity.value)
-  console.log(state.currentCity)
-  if (newCity.value === state.currentCity)
+  if (newCity.value === state.currentCity) {;
     getWeatherData(state.currentCoordinates);
+  }
   else {
     state.currentCity = newCity.value;
     getCityCoordandWeatherData(state.currentCity);
@@ -144,7 +143,7 @@ const getWeatherData = (coordinates) => {
     updateCustomElements();
   })
   .catch((error) => {
-    console.log(error,'could not get weather data')
+    console.log(error,'could not get weather data');
   });
   }
 
@@ -178,7 +177,7 @@ const updateConvertTempButton = () => {
 
 const findCustomStyle = (temp,styleDictionary) => {
   if (state.currentTempType === "C") {
-    temp = convertTemp(state.currentTemp,"C","F")
+    temp = convertTemp(state.currentTemp,"C","F");
   }
   if (temp <= 49.0) {
     return styleDictionary[49];
@@ -204,7 +203,7 @@ const changeLandscape= (currentTemp) => {
 };
 const changeTempColor = (currentTemp) => {
   let tempColor = findCustomStyle(currentTemp, tempTextColorDictionary);
-  const tempValueSurrounds = document.getElementById('tempValueBox')
+  const tempValueSurrounds = document.getElementById('tempValueBox');
   tempValueSurrounds.style.color = tempColor;
 };
 
@@ -219,7 +218,7 @@ const changeSkyinWeatherBox = (currentSky) => {
     skyBackgroundColorElement.style.backgroundColor = backgroundColorString;
   }
   else {
-    skyDisplayElement.innerText = "error for sky";
+    skyDisplayElement.innerText = "error in changing sky element";
   }
 };
 
@@ -273,7 +272,7 @@ const registerEventHandlers = () => {
   const cityInput= document.getElementById('cityNameInput');
   cityInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
-      document.getElementById("cityUpdate").click()
+      document.getElementById("cityUpdate").click();
     }
   });
   
@@ -287,25 +286,25 @@ const registerEventHandlers = () => {
 
 const updateCustomElements = () => {
   /// update header bar
-  const headerCityNameContainer = document.getElementById('headerCityName')
-  headerCityNameContainer.innerText = state.currentCity
+  const headerCityNameContainer = document.getElementById('headerCityName');
+  headerCityNameContainer.innerText = state.currentCity;
 
   /// update temp bar
   const tempValueElement = document.getElementById('tempValue');
-  tempValueElement.innerText = state.currentTemp
-  changeTempColor(state.currentTemp)
-  const tempClassElements = document.getElementsByClassName('tempType')
+  tempValueElement.innerText = state.currentTemp;
+  changeTempColor(state.currentTemp);
+  const tempClassElements = document.getElementsByClassName('tempType');
   for (var i = 0; i < tempClassElements.length; i++){
     tempClassElements[i].innerText = state.currentTempType;
   }
-  tempClassElements.innerText = state.currentTempType
-  updateConvertTempButton()
-  const realtimeCityButtonElement = document.getElementById('cityName')
-  realtimeCityButtonElement.innerText = state.currentCity
+  tempClassElements.innerText = state.currentTempType;
+  updateConvertTempButton();
+  const realtimeCityButtonElement = document.getElementById('cityName');
+  realtimeCityButtonElement.innerText = state.currentCity;
 
   /// update sky box
-  const skyInputElement = document.getElementById('skySelect')
-  skyInputElement.value = state.currentSky
+  const skyInputElement = document.getElementById('skySelect');
+  skyInputElement.value = state.currentSky;
 
   //// update cityName box 
   const cityInputElement = document.getElementById('cityNameInput');
@@ -321,11 +320,13 @@ const setOriginalValues = () => {
   tempValue.innerText = state.currentTemp;
   const cityValue = document.getElementById("cityNameInput");
   cityValue.value = state.currentCity;
-  getCityCoordandWeatherData(state.currentCity);}
-  const realtimeCityElement = document.getElementById('cityName')
-  realtimeCityElement.innerText = state.currentCity
+  getCityCoordandWeatherData(state.currentCity);
+  const realtimeCityElement = document.getElementById('cityName');
+  realtimeCityElement.innerText = state.currentCity;
+}
 
-setOriginalValues()
+
+setOriginalValues();
 
 
 
@@ -333,5 +334,5 @@ const onLoad = () => {
   document.addEventListener("DOMContentLoaded",registerEventHandlers);
 }
 
-onLoad()
+onLoad();
 
